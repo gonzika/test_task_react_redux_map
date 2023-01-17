@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { UserData } from '../app/interfaces';
 import { Button } from './Button';
 import { InputElement } from './InputElement';
 
 export const LoginForm = () => {
   const [user, setUser] = useState<UserData>({ username: '', password: '' });
+  const dispatch = useDispatch()
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const resultAction = await dispatch({ type: 'FETCH_SESSION_TOKEN', payload: { username: user.username, password: user.password } })
+  };
 
   return (
     <form onSubmit={handleSubmit}>

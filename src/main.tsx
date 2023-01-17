@@ -7,15 +7,19 @@ import { App } from './App';
 import { GlobalStyle } from './app/GlobalStyle';
 import { theme } from './app/theme';
 import "leaflet/dist/leaflet.css";
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Normalize />
-      <GlobalStyle />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Normalize />
+        <GlobalStyle />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 );
