@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { ROUTES } from "../app/routes";
 import { RootState } from "../app/store";
-import { LoginBackground } from "../components/LoginBackground";
 import { LoginForm } from "../components/LoginForm";
 import { LoginSidebar } from "../components/LoginSidebar";
 
@@ -15,11 +14,8 @@ export const Login = () => {
   };
 
   return (
-    <>
-      <LoginSidebar>
-        <LoginForm />
-      </LoginSidebar>
-      <LoginBackground />
-    </>
+    <LoginSidebar>
+      <LoginForm />
+    </LoginSidebar>
   )
 };
