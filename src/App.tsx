@@ -8,6 +8,7 @@ import { Data } from './views/Data';
 import { Secondary } from './views/Secondary';
 import { useSelector } from 'react-redux';
 import { RootState } from './app/store';
+import { useEffect } from 'react';
 
 export const App = () => {
   const sessionKey = useSelector((state: RootState) => state.global.sessionKey)
@@ -22,8 +23,8 @@ export const App = () => {
         </PrivateRoute>
       } />
       <Route path={ROUTES.map} element={<PrivateRoute sessionKey={sessionKey}><Map /></PrivateRoute>}>
-        <Route path={ROUTES.secondary} element={<Secondary />} />
-        <Route path={ROUTES.data} element={<Data />} />
+        <Route path={ROUTES.secondary} element={<Secondary sessionKey={sessionKey} />} />
+        <Route path={ROUTES.data} element={<Data sessionKey={sessionKey} />} />
       </Route>
     </Routes>
   );

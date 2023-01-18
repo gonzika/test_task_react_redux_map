@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { MAP_DEFAULT_ZOOM, MAP_SOURCE_URL, MAP_VENDOR_NAME, MAP_VENDOR_URL } from '../app/constants';
+import { GEO_TYPE_POLYGON, MAP_DEFAULT_ZOOM, MAP_SOURCE_URL, MAP_VENDOR_NAME, MAP_VENDOR_URL } from '../app/constants';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
+import { Polygon } from '../views/Secondary';
+
 
 export const Map = () => {
+  const geoData = useSelector((state: RootState) => state.global.geoData)
+
+
   return (
     <>
       <StyledMapContainer
@@ -16,6 +24,8 @@ export const Map = () => {
           attribution={`&copy; '<a href=${MAP_VENDOR_URL}>${MAP_VENDOR_NAME}</a>'`}
         />
         <Outlet />
+
+        {geoData?.type === GEO_TYPE_POLYGON && <Polygon geoData={geoData} />}
       </StyledMapContainer>
     </>
   )
