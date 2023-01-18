@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BASE_URL, API_URLS } from './apiUrls'
-import { GEO_TYPE_POLYGON } from './constants'
-import { createGeoJsonToPolygon, getCenter } from './geoUtils'
+import { GEO_TYPE_POLYGON, GEO_TYPE_SCATTERPLOT } from './constants'
+import { createGeoJsonToPolygon, getMarkersForScatterplot, getBoundsFromTopLeftRightBotton, getCenter } from './geoUtils'
 
 
 const Api = {
@@ -27,9 +27,15 @@ const Api = {
 
         const geoData = res.data
         geoData.type = type
+
         if (geoData.type === GEO_TYPE_POLYGON) {
             geoData.geoJson = createGeoJsonToPolygon(geoData.extent)
             geoData.center = getCenter(geoData.geoJson)
+        }
+        else if (geoData.type === GEO_TYPE_SCATTERPLOT) {
+            geoData.bounds = getBoundsFromTopLeftRightBotton(geoData.coordinates_bounding_box)
+            geoData.center = getCenter(geoData.bounds)
+            geoData.geoJson = getMarkersForScatterplot(geoData)
         }
 
         return geoData
