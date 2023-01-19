@@ -39,7 +39,6 @@ export const globalSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
 export const { set_sessionKey, set_loading, set_error, set_geoData } = globalSlice.actions
 
 const globalReducer = globalSlice.reducer

@@ -8,7 +8,6 @@ import { Data } from './views/Data';
 import { Secondary } from './views/Secondary';
 import { useSelector } from 'react-redux';
 import { RootState } from './app/store';
-import { useEffect } from 'react';
 import Spinner from './components/spinner';
 import { Background } from './components/Background';
 
