@@ -1,15 +1,17 @@
 import styled from 'styled-components';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { GEO_TYPE_POLYGON, GEO_TYPE_SCATTERPLOT, MAP_DEFAULT_ZOOM, MAP_SOURCE_URL, MAP_VENDOR_NAME, MAP_VENDOR_URL } from '../app/constants';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { Polygon } from '../views/Secondary';
 import { Scatterplot } from '../views/Data';
+import { Button } from './Button';
 
 
 export const Map = () => {
   const geoData = useSelector((state: RootState) => state.global.geoData)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -27,6 +29,8 @@ export const Map = () => {
         {geoData?.type === GEO_TYPE_POLYGON && <Polygon geoData={geoData} />}
         {geoData?.type === GEO_TYPE_SCATTERPLOT && <Scatterplot geoData={geoData} />}
       </StyledMapContainer>
+
+      <Button onClick={() => navigate(-1)} style={{ position: 'fixed', bottom: 0, left: '5px' }}>&lt;&lt; BACK</Button>
     </>
   )
 };
@@ -37,5 +41,5 @@ const StyledMapContainer = styled(MapContainer)`
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 0;
 `;

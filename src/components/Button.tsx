@@ -9,16 +9,18 @@ interface StyledButtonProps {
 export interface ButtonProps extends StyledButtonProps {
   children: ReactNode,
   type?: "button" | "submit" | "reset",
-  onClick?: (event: React.SyntheticEvent) => void
+  onClick?: (event: React.SyntheticEvent) => void,
+  style?: object,
 };
 
-export const Button = ({ children, type, onClick, disabled, primary }: ButtonProps) => {
+export const Button = ({ children, type, onClick, disabled, primary, style }: ButtonProps) => {
   return (
     <StyledButton
       type={type || "button"}
       onClick={onClick}
       disabled={disabled}
       primary={primary}
+      style={style}
     >
       {children}
     </StyledButton>
@@ -43,6 +45,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   text-transform: uppercase;
   transition: background-color ease-in-out 300ms;
   user-select: none;
+  z-index: 1;
+  position: relative;
   -webkit-user-select: none;
    -khtml-user-select: none;
    -moz-user-select: none;
