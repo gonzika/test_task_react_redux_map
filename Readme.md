@@ -1,3 +1,8 @@
+# How to launch project
+1. Clone repository
+2. Install dependencies, run dev server 
+
+
 # Recruitment-frontend
 
 ## Tasks

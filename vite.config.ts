@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     svgr(),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/tests/setup.js',
+  },
 })

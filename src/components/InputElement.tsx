@@ -8,9 +8,10 @@ export interface InputElementProps {
   type?: "text" | "password";
   label?: string;
   setValue: Dispatch<SetStateAction<UserData>>;
+  required?: boolean;
 }
 
-export const InputElement= ({ value, name, type, label, setValue }: InputElementProps) => {
+export const InputElement = ({ value, name, type, label, setValue, required }: InputElementProps) => {
   return (
     <StyledLabel>
       {label}
@@ -20,6 +21,7 @@ export const InputElement= ({ value, name, type, label, setValue }: InputElement
         type={type}
         onChange={e => setValue(prevState => ({ ...prevState, [name]: e.target.value }))}
         autoComplete="on"
+        required={required}
       />
     </StyledLabel>
   );

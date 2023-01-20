@@ -10,7 +10,7 @@ export const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const resultAction = await dispatch({ type: 'FETCH_SESSION_TOKEN', payload: { username: user.username, password: user.password } })
+    dispatch({ type: 'FETCH_SESSION_TOKEN', payload: { username: user.username, password: user.password } })
   };
 
   return (
@@ -20,6 +20,7 @@ export const LoginForm = () => {
         name="username"
         label={"Username"}
         setValue={setUser}
+        required={true}
       />
       <InputElement
         value={user.password}
@@ -27,6 +28,7 @@ export const LoginForm = () => {
         type={"password"}
         label={"Password"}
         setValue={setUser}
+        required={true}
       />
       <Button
         primary

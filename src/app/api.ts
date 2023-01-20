@@ -6,11 +6,15 @@ import { createGeoJsonToPolygon, getMarkersForScatterplot, getBoundsFromTopLeftR
 
 const Api = {
     async getSessionKey({ username, password }) {
+        if (!username || !password) throw new Error('No username or password')
+
         const res = await axios.post(BASE_URL + API_URLS.login,
             { username, password }
         ).then(
             (data) => data
-        )
+        ).catch(error => {
+            throw new Error(error)
+        })
 
         return res.data
     },
