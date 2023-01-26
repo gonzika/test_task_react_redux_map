@@ -20,7 +20,7 @@ export const LoginForm = () => {
         name="username"
         label={"Username"}
         setValue={setUser}
-        required={true}
+        required
       />
       <InputElement
         value={user.password}
@@ -28,7 +28,7 @@ export const LoginForm = () => {
         type={"password"}
         label={"Password"}
         setValue={setUser}
-        required={true}
+        required
       />
       <Button
         primary
